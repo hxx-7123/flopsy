@@ -17,10 +17,11 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 {% if session.get('user_id') %}
-                    <a href="{{ url_for('logout') }}">Logout</a>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
                 {% else %}
-                    <a href="{{ url_for('login') }}">Login</a>
-                    <a href="{{ url_for('register') }}">Register</a>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
                 <li><a href="#">About</a></li>
                 <li><a href="#">Services</a></li>
