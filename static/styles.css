@@ -39,7 +39,7 @@ nav ul li a {
 
 #banner {
     width: 100%;
-    height: 72  0px;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -52,6 +52,16 @@ nav ul li a {
     padding: 15px;
     margin: 10px;
     width: 200px;
+}
+
+.profile-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+}
+.profile-info p {
+    font-size: 1.2em;
 }
 
 main {
