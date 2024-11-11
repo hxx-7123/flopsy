@@ -45,7 +45,7 @@ def login():
             session['user_id'] = user['id']
             return redirect(url_for('index'))
         else:
-            return "Invalid credentials"
+            return render_template('login.html', error="Invalid credentials")
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -75,8 +75,31 @@ def register():
         db.close()
         
         return redirect(url_for('login'))
-    
     return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    # Clear the session data
+    session.clear()
+    # Redirect to the homepage or login page
+    return redirect(url_for('index'))
+
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    user_id = session['user_id']
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    
+    # Fetch user details
+    cursor.execute("SELECT username, email FROM users WHERE id = %s", (user_id,))
+    user = cursor.fetchone()
+    
+    db.close()
+    
+    return render_template('profile.html', user=user)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
